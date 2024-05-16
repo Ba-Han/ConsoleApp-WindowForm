@@ -21,7 +21,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlogWinFormsAppMiniProject"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MVC", "MVC", "{C2C1C521-907E-4A7D-ADE1-D92354224220}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KhunBaHan.SampleMVCWebApp", "KhunBaHan.SampleMVCWebApp\KhunBaHan.SampleMVCWebApp.csproj", "{A178E43A-45E9-4E55-916F-C1C6FDD439DF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KhunBaHan.SampleMVCWebApp", "KhunBaHan.SampleMVCWebApp\KhunBaHan.SampleMVCWebApp.csproj", "{A178E43A-45E9-4E55-916F-C1C6FDD439DF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KhunBaHanSampleCrubCategory", "KhunBaHanSampleCrubCategory\KhunBaHanSampleCrubCategory.csproj", "{AF5E810C-CFB2-4E9B-962B-0AB285751031}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -65,12 +67,17 @@ Global
 		{A178E43A-45E9-4E55-916F-C1C6FDD439DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A178E43A-45E9-4E55-916F-C1C6FDD439DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A178E43A-45E9-4E55-916F-C1C6FDD439DF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AF5E810C-CFB2-4E9B-962B-0AB285751031}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AF5E810C-CFB2-4E9B-962B-0AB285751031}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AF5E810C-CFB2-4E9B-962B-0AB285751031}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AF5E810C-CFB2-4E9B-962B-0AB285751031}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{A178E43A-45E9-4E55-916F-C1C6FDD439DF} = {C2C1C521-907E-4A7D-ADE1-D92354224220}
+		{AF5E810C-CFB2-4E9B-962B-0AB285751031} = {C2C1C521-907E-4A7D-ADE1-D92354224220}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {056F5518-32C8-433E-99E8-D1C19981BE06}

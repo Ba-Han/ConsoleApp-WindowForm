@@ -1,0 +1,68 @@
+﻿@model List<CategoryModel>;
+
+@{
+    ViewData["Title"] = "Category Management";
+    var success = TempData["success"];
+    var error = TempData["error"];
+}
+
+@if(success is not null)
+{
+<div class="alert alert-success" role="alert">
+    @success
+</div>    
+}
+
+@if (error is not null)
+{
+    <div class="alert alert-danger" role="alert">
+        @error
+    </div>
+}
+
+<a class="btn btn-outline-primary" href="/Category/CreateCategory">Create Category</a>
+
+<div class="container mt-3">
+    <div class="card-header">
+        <h3 class="text-center">Category Management</h3>
+    </div>
+    <div class="card-body">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Category ID</th>
+                    <th>Category Name</th>
+                    <th>Is Active</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.CategoryId</td>
+                        <td>@item.CategoryName</td>
+                        <td>@item.IsActive</td>
+                        <td>
+                            <button class="btn btn-outline-secondary">Edit</button>
+                            <button class="btn btn-outline-danger" onclick="btnDelete('@item.CategoryId')">Delete</button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@section scripts {
+    <script>
+        function btnDelete(id) {
+            if (id === "" || id == 0 || id === null)
+                return;
+
+            if (window.confirm("Are you sure you want to delete?")) {
+                window.location.href = `/Category/Delete/${id}`;
+            }
+        }
+    </script>
+}
