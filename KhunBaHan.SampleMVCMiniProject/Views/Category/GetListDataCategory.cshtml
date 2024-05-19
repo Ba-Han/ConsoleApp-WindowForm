@@ -1,0 +1,75 @@
+﻿@model List<GetCategoryModel>;
+
+@{
+    ViewData["Title"] = "Category Management Form";
+    var error = TempData["error"];
+    var success = TempData["success"];
+}
+
+@if( error is not null)
+{
+    <div class="alert alert-danger" role="alert">
+        @error
+    </div>
+}
+
+@if (success is not null)
+{
+    <div class="alert alert-success" role="alert">
+        @success
+    </div>
+}
+
+<div class="container mt-3">
+    <div class="row justify-content-center">
+        <div class="col">
+            <div class="card-header">
+                <h3>Category Management Form
+                    <a class="btn btn-outline-primary float-end" href="/Category/CreateCategoryForm">Create Category</a>
+                </h3>
+            </div>
+            <div class="card-body">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Category ID</th>
+                            <th>Category Name</th>
+                            <th>Is Active</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@item.CategoryId</td>
+                                <td>@item.CategoryName</td>
+                                <td>@item.IsActive</td>
+                                <td>
+                                    <a class="btn btn-outline-primary" href="/Category/Edit/@item.CategoryId">Edit</a>
+                                    <button class="btn btn-outline-danger" onclick="btnDelete('@item.CategoryId')">Delete</button>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section scripts 
+{
+    <script>
+        function btnDelete(id) {
+            if (id === 0 || id === null || id === "")
+                return;
+            if (window.confirm("Are you sure want to delete this item?")) 
+            {
+                window.location.href = `/Category/Delete/${id}`;
+            }
+        }
+    </script>
+}
+

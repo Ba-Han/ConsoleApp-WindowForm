@@ -44,7 +44,7 @@
                         <td>@item.CategoryName</td>
                         <td>@item.IsActive</td>
                         <td>
-                            <button class="btn btn-outline-secondary">Edit</button>
+                            <a class="btn btn-outline-secondary" href="/Category/Edit/@item.CategoryId">Edit</a>
                             <button class="btn btn-outline-danger" onclick="btnDelete('@item.CategoryId')">Delete</button>
                         </td>
                     </tr>

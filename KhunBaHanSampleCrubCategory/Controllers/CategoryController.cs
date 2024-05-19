@@ -97,6 +97,74 @@ namespace KhunBaHanSampleCrubCategory.Controllers
             }
         }
 
+        public IActionResult Edit(long id)
+        {
+            try
+            {
+                #region checkAlreadyEditCategoryName
+                string editQuery = @"SELECT CategoryId, CategoryName, IsActive FROM Category WHERE CategoryId = @CategoryId AND IsActive = @IsActive";
+                List<SqlParameter> editPara = new List<SqlParameter>()
+                {
+                    new SqlParameter("@CategoryId", id),
+                    new SqlParameter("@IsActive", true)
+                };
+                DataTable dt = _adoDotNetServices.QueryFirstOrDefault(editQuery, editPara.ToArray());
+                List<CategoryModel> lst = new List<CategoryModel>();
+                if(dt.Rows.Count > 0)
+                {
+                    string jsonStr = JsonConvert.SerializeObject(dt);
+                    lst = JsonConvert.DeserializeObject<List<CategoryModel>>(jsonStr)!;
+                }
+                return View(lst);
+                #endregion
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        [HttpPost]
+        public IActionResult UpdateCategory(CategoryModel categoryRequest)
+        {
+            #region checkDuplicateCase
+            string checkDuplicateQuery = @"SELECT [CategoryId]
+                    ,[CategoryName]
+                    ,[IsActive]
+                FROM [dbo].[Category] WHERE CategoryName = @CategoryName AND IsActive = @IsActive";
+            List<SqlParameter> checkDuplicatePara = new List<SqlParameter>()
+            {
+                new SqlParameter("@CategoryName", categoryRequest.CategoryName),
+                new SqlParameter("@IsActive", true)
+            };
+            DataTable dt = _adoDotNetServices.QueryFirstOrDefault(checkDuplicateQuery, checkDuplicatePara.ToArray());
+            if(dt.Rows.Count > 0)
+            {
+                TempData["error"] = "Category Name is Already Exist.";
+                return RedirectToAction("Index", "Category");
+            }
+            #endregion
+
+            #region saveCategory
+            string saveCategoryQuery = @"UPDATE Category SET CategoryName = @CategoryName WHERE CategoryId = @CategoryId";
+            List<SqlParameter> saveCategoryPara = new List<SqlParameter>()
+            {
+                new SqlParameter("@CategoryName", categoryRequest.CategoryName),
+                new SqlParameter("@CategoryId", categoryRequest.CategoryId)
+            };
+            int resLst = _adoDotNetServices.Execute(saveCategoryQuery, saveCategoryPara.ToArray());
+            if(resLst > 0)
+            {
+                TempData["success"] = "Creating Successful.";
+            }
+            else
+            {
+                TempData["error"] = "Creating Fail.";
+            }
+            return RedirectToAction("Index", "Category");
+            #endregion
+        }
+
         public IActionResult Delete(long id)
         {
             try
