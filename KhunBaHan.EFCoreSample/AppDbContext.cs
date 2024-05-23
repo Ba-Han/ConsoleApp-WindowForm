@@ -7,6 +7,6 @@ namespace KhunBaHan.EFCoreSample
     {
         public AppDbContext(DbContextOptions options) : base(options) { }
 
-        public DbSet<CategoryModel> Category { get; set; }
+        public DbSet<Tbl_Category> Tbl_Category { get; set; }
     }
 }
