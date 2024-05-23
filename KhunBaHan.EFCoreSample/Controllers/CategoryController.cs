@@ -53,7 +53,7 @@ namespace KhunBaHan.EFCoreSample.Controllers
         {
             try
             {
-                if (string.IsNullOrEmpty(requestModel.CategoryName))
+                if (string.IsNullOrEmpty(requestModel.CategoryName) || requestModel.CategoryName == "string")
                     return BadRequest("Category Name cannot be empty.");
 
                 bool isDuplicate = await _appDbContext.Tbl_Category
