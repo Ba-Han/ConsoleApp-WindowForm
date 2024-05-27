@@ -1,0 +1,22 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+    var success = TempData["success"];
+}
+
+<div class="card">
+    <div class="card-header">
+        @if (success is not null) {
+            <h3 class="alert alert-primary">@success</h3>
+        }
+        <h1>Hello Temp Data</h1>
+    </div>
+    <div class="card-body">
+        <form method="post" action="/Home/Submit">
+            <label>Name:</label>
+            <input type="text" class="form-control" name="Name"/>
+            <br />
+            <button type="submit" class="btn btn-outline-primary">Save</button>
+        </form>
+    </div>
+</div>
+
