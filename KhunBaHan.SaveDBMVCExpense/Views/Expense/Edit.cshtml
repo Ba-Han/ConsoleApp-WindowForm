@@ -1,0 +1,24 @@
+﻿@{
+    ViewData["Title"] = "Edit Expense";
+}
+
+@model List<GetExpense>
+
+<div class="text-center">
+    <h1 class="display-4">Edit Expense</h1>
+    <br />
+</div>
+<div>
+    <form method="post" action="/Expense/UpdateExpense">
+        <input type="hidden" name="Id" value="@Model[0].Id" />
+        <label>Value</label>
+        <input type="number" class="form-control" placeholder="0" name="Value" value="@Model[0].Value" required />
+        <br />
+
+        <label>Description</label>
+        <input type="text" class="form-control" placeholder="Add a Description" name="Description" value="@Model[0].Description" required />
+        <br />
+
+        <button class="btn btn-outline-primary">Save</button>
+    </form>
+</div>

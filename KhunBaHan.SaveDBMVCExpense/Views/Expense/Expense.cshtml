@@ -1,0 +1,70 @@
+﻿@{
+    ViewData["Title"] = "Expense";
+    var success = TempData["success"];
+    var error = TempData["error"];
+}
+
+@model List<GetExpense>
+
+@if (error is not null)
+{
+    <div class="alert alert-danger" role="alert">
+        @error
+    </div>
+}
+
+@if (success is not null)
+{
+    <div class="alert alert-success" role="alert">
+        @success
+    </div>
+}
+
+<div class="text-center">
+    <h1 class="display-4">Create Expense</h1>
+    <a href="/Expense/CreateOrEditExpense" class="btn btn-outline-primary">Create Expense</a>
+
+    <div class="row justify-content-center">
+        <div class="col">
+            <div class="card-body">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Value</th>
+                            <th>Description</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var expense in Model)
+                        {
+                            <tr>
+                                <td>@expense.Id</td>
+                                <td>@expense.Value</td>
+                                <td>@expense.Description</td>
+                                <td>
+                                    <a class="btn btn-outline-primary" href="/Expense/Edit/@expense.Id">Edit</a>
+                                    <button class="btn btn-outline-danger" onclick="btnDelete('@expense.Id')">Delete</button>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts
+{
+    <script>
+        function btnDelete(id) {
+            if (id === 0 || id === null || id === "")
+                return;
+            if (window.confirm("Are you sure want to delete this item?")) {
+                window.location.href = `/Expense/Delete/${id}`;
+            }
+        }
+    </script>
+}
