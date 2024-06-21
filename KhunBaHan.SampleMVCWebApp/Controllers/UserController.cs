@@ -35,7 +35,7 @@ namespace KhunBaHan.SampleMVCWebApp.Controllers
       ,[Email]
       ,[Password]
       ,[IsActive]
-  FROM [dbo].[userLoing] WHERE Email = @Email AND Password = @Password AND IsActive = @IsActive";
+  FROM [dbo].[userLogin] WHERE Email = @Email AND Password = @Password AND IsActive = @IsActive";
 				List<SqlParameter> parameters = new List<SqlParameter>()
 				{
 					new SqlParameter("@Email", requestModel.Email),
